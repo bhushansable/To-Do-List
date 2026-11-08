@@ -1,0 +1,159 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.conteiner {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* Header */
+header h1 {
+    font-family: Impact, sans-serif;
+    font-weight: 500;
+    padding: 10px 0 30px;
+    color: #2563eb;
+    font-size: 70px;
+    text-align: center;
+}
+
+/* Login and Register tabs */
+.tabs {
+    display: flex;
+    gap: 10px;
+    padding: 5px;
+    width: 100%;
+    background-color: #f1f5f9;
+    border-radius: 10px;
+    margin-bottom: 28px;
+}
+
+.tabs button {
+    flex: 1;
+    background: transparent;
+    color: #64748b;
+    padding: 12px;
+    border: 1px solid #94a3b8;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+/* Forms */
+#login_form:not([hidden]),
+#register_form:not([hidden]) {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 25px;
+    background-color: #f1f5f9;
+    border-radius: 12px;
+}
+
+/* Inputs */
+form input {
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+}
+
+/* Form buttons */
+form button {
+    padding: 12px;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* Active tab */
+.tabs button.active {
+    background-color: #2563eb;
+    color: white;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 25px;
+}
+
+
+#delete_bt {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    margin: 15px auto;
+    padding: 12px;
+
+    background-color: #ef4444;
+    color: white;
+
+    border: none;
+    border-radius: 8px;
+
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+
+    transition: background-color 0.2s;
+}
+
+#delete_bt:hover {
+    background-color: #dc2626;
+}
+
+#delete_bt:active {
+    transform: scale(0.98);
+}
+
+
+/* Mobile Responsive */
+@media screen and (max-width: 600px) {
+
+    .conteiner {
+        padding: 20px 15px;
+    }
+
+    header h1 {
+        font-size: 45px;
+        text-align: center;
+    }
+
+    .tabs {
+        gap: 8px;
+        width: 100%;
+    }
+
+    .tabs button {
+        flex: 1;
+        padding: 12px 5px;
+        font-size: 13px;
+    }
+
+    #login_form:not([hidden]),
+    #register_form:not([hidden]) {
+        width: 100%;
+        padding: 20px;
+    }
+
+    #delete_bt {
+        width: 100%;
+        margin: 15px auto;
+    }
+
+    footer {
+        text-align: center;
+    }
+}

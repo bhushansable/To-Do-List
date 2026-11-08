@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TO-DO-LIST</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="conteiner">
+        <header>
+            <h1>TO-DO-LIST</h1>
+        </header>
+        <div class="tabs">
+            <button type="button" id="login_tab" class="active">LOGIN</button>
+            <button type="button" id="register_tab" >REGISTER</button>
+        </div>
+
+        
+        <!-- login from -->
+         <form id="login_form">
+            <h2>Welcome Back </h1>
+            <p>Login for TO-DO-LIST</p>
+
+            <label for="login_name">Name</label>
+            <input 
+            type="name"
+            id="login_name"
+            name="name"
+            placeholder="Enter Your Name"
+            required
+            >
+            
+            <label for="login_password">Password</label>
+            <input 
+            type="password"
+            id="login_password"
+            name="password"
+            placeholder="Enter Your Password"
+            required
+            >
+
+            <button type="submit">Login</button>
+            <button id="delete_bt" type="button">Delete</button>
+         </form>
+
+         <!-- register -->
+          <form id="register_form" hidden>
+            <h2>TO-DO-LIST</h2>
+            <p>Register And Make To-DO-LIST OF Your Work</p>
+
+            <label for="register_name">Name</label>
+             <input 
+            type="name"
+            id="register_name"
+            name="name"
+            placeholder="Enter Your Name"
+            required
+            >
+            
+            <label for="register_password">Password</label>
+            <input 
+            type="password"
+            id="register_password"
+            name="password"
+            placeholder="Enter Your Password"
+            required
+            >
+            
+            <button type="submit">Register</button>
+
+      
+          </form>
+          
+         
+
+          <footer>
+            <p>Track your Work</p>
+          </footer>
+          <script src="login.js"></script>
+    </div>
+</body>
+</html>
