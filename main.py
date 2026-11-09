@@ -57,17 +57,19 @@ def verify_user(name ,password):
 
     return None
 
-def delete_user(name ,password):
-    with sqlite3.connect(DB) as conn:
-           cursor = conn.cursor()
-   
-    cursor.execute('''
-                  DELETE FROM user_data
-                  WHERE name =? AND password = ?
-                  ''',(name,password)
-                  )
 
-    return cursor.rowcount
+def delete_user(name, password):
+    with sqlite3.connect(DB) as conn:
+        cursor = conn.cursor()
+
+        cursor.execute("""
+            DELETE FROM user_data
+            WHERE name = ? AND password = ?
+        """, (name, password))
+
+        deleted = cursor.rowcount
+
+    return deleted
 
 
 def add_data(user_id,date,title,discripion,priority):
