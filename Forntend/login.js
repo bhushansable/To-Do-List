@@ -67,48 +67,44 @@ register_form.addEventListener("submit",async function (event) {
 
 // login
 
-login_form.addEventListener("submit",async function (event) {
+login_form.addEventListener("submit", async function (event) {
     event.preventDefault();
 
     const name = document.getElementById("login_name").value.trim();
     const password = document.getElementById("login_password").value;
 
     try {
-         const respons = await fetch(`${API}/login`,{
-        method :"POST",
-        headers:{
-            "Content-Type":"application/json"
-        },
-        body:JSON.stringify({
-            name,
-            password
-        })
-    });
+        const response = await fetch(`${API}/login`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ name, password })
+        });
 
-    const data = await respons.json();
+        const data = await response.json();
 
-    if(!respons.ok){
-        throw new Error(
-            data.detail ||"api now work"
-        )
-    }
+        console.log("Login API Response:", data);
 
-    const userId = data.user_id;
+        if (!response.ok) {
+            throw new Error(data.detail || "Login failed");
+        }
 
-    if(userId== null){
-        throw new Error("user id")
-    }
+        if (data.user_id === undefined || data.user_id === null) {
+            throw new Error("User ID missing from API response");
+        }
 
-    sessionStorage.setItem(userId,String(userId))
+        sessionStorage.setItem("user_id", String(data.user_id));
 
-    window.location.href="/Forntend/notes.html";
+        console.log("Saved User ID:", sessionStorage.getItem("user_id"));
 
-        
+        window.location.href = "/Forntend/notes.html";
+
     } catch (error) {
-        showMessage(error.message||"login not work")
+        console.error(error);
+        showMessage(error.message || "Login failed");
     }
-
-})
+});
 
 
 // dete user

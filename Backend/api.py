@@ -11,7 +11,10 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "http://127.0.0.1:5500",
+        "http://localhost:5500"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"]
@@ -77,37 +80,42 @@ def deltet_user_(user : Resigter):
     }
 
 @app.post("/notes")
-def add_notes(notes : Notes):
-    add_data(
-        notes.user_id,
-        notes.date,
-        notes.titel,
-        notes.discription,
-        notes.priority
-    )
+def add_notes(notes: Notes):
+    try:
+        add_data(
+            notes.user_id,
+            notes.date,
+            notes.titel,
+            notes.discription,
+            notes.priority
+        )
+
+        return {
+            "message": "Notes added successfully",
+            "notes": notes
+        }
+
+    except Exception as e:
+        print("ADD NOTES ERROR:", repr(e))
+        raise HTTPException(
+            status_code=500,
+            detail=str(e)
+        )
+
+@app.get("/notes/{date}")
+def read_notes(date: str):
+    notes = get_notes(date)
 
     return {
-        "message":"Notes are succesefully add",
-        "notes" : notes
-    }
-
-
-@app.get("/notes{user_id}")
-def read_notes( user_id : int):
-    notes = get_notes(user_id)
-
-    return{
-        "user_id":user_id,
-        "notes":[
+        "date": date,
+        "notes": [
             {
-                "id" : row[0],
-                "date":row[1],
-                "titel":row[2],
-                "discription" :[3],
-                "priority" :[4]
-
+                "id": row[0],
+                "date": row[1],
+                "titel": row[2],
+                "discription": row[3],
+                "priority": row[4]
             }
-
             for row in notes
         ]
     }

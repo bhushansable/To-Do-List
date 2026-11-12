@@ -12,6 +12,8 @@
     padding: 40px 20px;
 }
 
+/* login and regiuster page */
+
 /* Header */
 header h1 {
     font-family: Impact, sans-serif;
@@ -118,6 +120,69 @@ footer {
     transform: scale(0.98);
 }
 
+
+/* notes page */
+
+.main{
+    height: 800px;
+    background-color: white;
+    border: solid black;
+    border-radius: 10px;
+ 
+}
+
+.tabs_task{
+    display: flex;
+    gap: 200px;
+    padding-top: 50px;
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 28px;
+
+}
+.tabs_task button{
+    flex: 1;
+    background: transparent;
+    color: #64748b;
+    padding: 12px;
+    border: 1px solid #94a3b8;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.tabs_task button.active{
+    background-color: #2563eb;
+    color: white;}
+
+#add_from:not([hidden]),
+#view_from:not([hidden]){
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 25px;
+    padding-top: 70px;
+    border-radius: 12px;
+}
+
+#task-results{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.note-card {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
 
 /* Mobile Responsive */
 @media screen and (max-width: 600px) {

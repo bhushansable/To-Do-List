@@ -3,9 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>TO-DO-LIST</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>hii</h1>
+    <div class="conteiner">
+        <header>
+            <h1 id="header_h1">
+                TO-DO-LIST
+            </h1>
+        </header>
+        <div class="main">
+            <div class="tabs_task">
+                <button type="button" id="add_task_btn" class="active">ADD TASK</button>
+                <button type="button" id="view_task_btn">VIEW TASK</button>
+            </div>
+
+            <!-- add form -->
+             <form id="add_from">
+                <h2>Add Your Task</h2>
+
+                <label for="add__date">Date</label>
+                <input 
+                type="Date"
+                name = "Date"
+                id="add_date"
+                placeholder="Enter Your Task Date "
+                required>
+
+                <input type="text" id="add_title" placeholder="Enter Task Title">
+
+                <textarea id="add_Discription" placeholder="Enter Discription">
+
+                </textarea>
+
+                <select id="add_Priority">
+                 <option value="">Select Priority</option>
+                 <option value="Low">Low</option>
+                 <option value="Medium">Medium</option>
+                 <option value="High">High</option>
+                </select>
+
+                <button id="add_btn" type="submit">ADD</button>
+                
+             </form>
+
+             <!-- view task from--> 
+              <form id="view_from" hidden>
+                 <h2>View Your Tasks</h2>
+
+                 <label for="view_date">Date</label>
+                 <input type="date" id="view_date" required>
+
+                 <button type="submit">View Task</button>
+
+                 <div id="task-results"></div>
+             </form>
+
+              <!-- Output -->
+               
+             
+            
+        </div>
+    </div>
+    <script src="notes.js"></script>
 </body>
 </html>

@@ -21,14 +21,20 @@ conn.execute('''
             id INTEGER PRIMARY KEY AUTOINCREMENT ,
             user_id INTEGER NOT NULL ,
             date TEXT,
-            titel VANCHAR(50),
-            discription VANCHAR(100),
+            title VANCHAR(50),
+            discripion VANCHAR(100),
             priority TEXT DEFAULT 'Medium',
             FOREIGN KEY (user_id) REFERENCES user_data(id)
             )                      
  ''')
 
 conn.commit()
+
+
+with sqlite3.connect(DB) as conn:
+    cursor = conn.cursor()
+    cursor.execute("PRAGMA table_info(notes_data)")
+    print(cursor.fetchall())
 
 # this section of function that help to add data and get data from database
 
@@ -72,30 +78,32 @@ def delete_user(name, password):
     return deleted
 
 
-def add_data(user_id,date,title,discripion,priority):
+def add_data(user_id, date, title, discripion, priority):
     with sqlite3.connect(DB) as conn:
-           cursor = conn.cursor()
-   
-    cursor.execute('''
-                  INSERT INTO notes_data (user_id,date,title,discripion,priority)
-                   VALUES(?,?,?,?,?)'''
-                  ,(user_id,date,title,discripion,priority)
-                  )
+        cursor = conn.cursor()
 
-    conn.commit()
+        cursor.execute("""
+            INSERT INTO notes_data
+            (user_id, date, titel, discription, priority)
+            VALUES (?, ?, ?, ?, ?)
+        """, (user_id, date, title, discripion, priority))
 
-def get_notes(user_id):
+        conn.commit()
+
+def get_notes(date):
     with sqlite3.connect(DB) as conn:
-           cursor = conn.cursor()
-   
-    cursor.execute('''
-                  SELECT * FROM notes_data
-                  WHERE user_id = ? ''',
-                  (user_id)
-                  )
+        cursor = conn.cursor()
 
-    return cursor.fetchall()
+        cursor.execute("""
+            SELECT id, date, titel, discription, priority
+            FROM notes_data
+            WHERE date = ?
+        """, (date,))
 
+        result = cursor.fetchall()
+        print("GET NOTES RESULT:", result)
+
+        return result
 
 
     
