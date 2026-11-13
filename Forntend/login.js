@@ -111,7 +111,7 @@ login_form.addEventListener("submit", async function (event) {
 
 delete_tab.addEventListener("click",async function (event) {
     event.preventDefault()
-    
+     
      const name = document.getElementById("login_name").value.trim();
      const password = document.getElementById("login_password").value;
 

@@ -31,10 +31,10 @@ conn.execute('''
 conn.commit()
 
 
-with sqlite3.connect(DB) as conn:
-    cursor = conn.cursor()
-    cursor.execute("PRAGMA table_info(notes_data)")
-    print(cursor.fetchall())
+# with sqlite3.connect(DB) as conn:
+#     cursor = conn.cursor()
+#     cursor.execute("PRAGMA table_info(notes_data)")
+#     print(cursor.fetchall())
 
 # this section of function that help to add data and get data from database
 
@@ -89,6 +89,19 @@ def add_data(user_id, date, title, discripion, priority):
         """, (user_id, date, title, discripion, priority))
 
         conn.commit()
+
+def delete_data(user_id, date):
+    with sqlite3.connect(DB) as conn:
+        cursor = conn.cursor()
+
+        cursor.execute("""
+            DELETE FROM notes_data
+            WHERE user_id = ? AND date = ?
+        """, (user_id, date))
+
+        return cursor.rowcount
+
+        
 
 def get_notes(date):
     with sqlite3.connect(DB) as conn:

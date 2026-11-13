@@ -3,7 +3,7 @@
 
 from fastapi import FastAPI ,HTTPException
 from pydantic import BaseModel
-from main import register,verify_user,delete_user,add_data,get_notes
+from main import register,verify_user,delete_user,add_data,get_notes,delete_data
 from fastapi.middleware.cors import CORSMiddleware
 
 
@@ -31,6 +31,9 @@ class Notes(BaseModel):
     discription : str
     priority : str
 
+class DeleteNotes(BaseModel):
+    user_id: int
+    date: str
 
 @app.get("/")
 def home():
@@ -118,4 +121,21 @@ def read_notes(date: str):
             }
             for row in notes
         ]
+    }
+
+
+
+@app.delete("/delete_notes")
+def delete_notes(user: DeleteNotes):
+    deleted = delete_data(user.user_id,user.date)
+
+    if deleted == 0:
+        raise HTTPException(
+            status_code=404,
+            detail="No tasks found for this user on this date"
+        )
+
+    return {
+        "message": "Tasks deleted successfully",
+        "deleted_count": deleted
     }

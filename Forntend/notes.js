@@ -150,3 +150,44 @@ view_from.addEventListener("submit", async function (event) {
         showmessage(error.message);
     }
 });
+
+
+
+const delete_btn = document.getElementById("delete_btn");
+
+delete_btn.addEventListener("click", async function (event) {
+    event.preventDefault();
+
+    const date = document.getElementById("view_date").value;
+    const user_id = Number(sessionStorage.getItem("user_id"));
+
+    if (!date || !user_id) {
+        alert("Please select a date and login again.");
+        return;
+    }
+
+    try {
+        const response = await fetch(`${API}/delete_notes`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                user_id: user_id,
+                date: date
+            })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.detail || "Delete failed");
+        }
+
+        alert(`${data.deleted_count} task(s) deleted successfully`);
+
+    } catch (error) {
+        console.error("DELETE ERROR:", error);
+        alert(error.message);
+    }
+});
